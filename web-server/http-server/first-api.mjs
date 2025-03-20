@@ -4,6 +4,9 @@ import { stock } from "./database/stock.mjs";
 const server = http.createServer();
 
 server.addListener("request", (req, res) => {
+  const urlObject = new URL(`http://${req.headers.host}${req.url}`);
+  console.log(urlObject);
+
   if (req.url === "/") {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write(`
@@ -28,6 +31,14 @@ server.addListener("request", (req, res) => {
     );
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify(unavailableProducts));
+    res.end();
+  }
+
+  if (urlObject.pathname === "/api/get-product-by-id") {
+    const paramsId = urlObject.searchParams.get("id");
+    const product = stock.find((product) => product.id === parseInt(paramsId));
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.write(JSON.stringify(product));
     res.end();
   }
 });
