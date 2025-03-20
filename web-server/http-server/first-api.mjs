@@ -7,7 +7,7 @@ server.addListener("request", (req, res) => {
   const urlObject = new URL(`http://${req.headers.host}${req.url}`);
   console.log(urlObject);
 
-  if (req.url === "/") {
+  if (urlObject.pathname === "/") {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write(`
       <h1>Stock Management System</h1>
@@ -19,13 +19,13 @@ server.addListener("request", (req, res) => {
     res.end();
   }
 
-  if (req.url === "/api/stock") {
+  if (urlObject.pathname === "/api/stock") {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify(stock));
     res.end();
   }
 
-  if (req.url === "/api/unavailable-stock") {
+  if (urlObject.pathname === "/api/unavailable-stock") {
     const unavailableProducts = stock.filter(
       (product) => product.quantity === 0
     );
