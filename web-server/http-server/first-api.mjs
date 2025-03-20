@@ -14,7 +14,20 @@ server.addListener("request", (req, res) => {
       <ul>
         <li><a href="/api/stock">Get all stock items</a></li>
         <li><a href="/api/unavailable-stock">Get unavailable stock items</a></li>
+        <li>
+          <label>Busca de produto por ID</label>
+          <input type="text" id="searchInput" placeholder="ID do produto">
+          <button onclick="searchProduct()">Buscar</button>
+        </li>
       </ul>
+
+      <script>
+        function searchProduct() {
+          const input = document.getElementById("searchInput").value;
+          if (input) {
+            window.location.href = "/api/get-product-by-id?id=" + input;
+          }
+      </script>
     `);
     res.end();
   }
