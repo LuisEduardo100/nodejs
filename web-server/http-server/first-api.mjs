@@ -43,6 +43,14 @@ server.addListener("request", (req, res) => {
       return;
     }
     const product = stock.find((product) => product.id === parseInt(paramsId));
+
+    if (!product) {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.write("Product not found");
+      res.end();
+      return;
+    }
+
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify(product));
     res.end();
