@@ -13,7 +13,7 @@ server.addListener("request", (req, res) => {
       <h1>Stock Management System</h1>
       <ul>
         <li><a href="/api/stock">Get all stock items</a></li>
-        <li><a href="/api/unavailableStock">Get unavailable stock items</a></li>
+        <li><a href="/api/unavailable-stock">Get unavailable stock items</a></li>
       </ul>
     `);
     res.end();
@@ -36,6 +36,12 @@ server.addListener("request", (req, res) => {
 
   if (urlObject.pathname === "/api/get-product-by-id") {
     const paramsId = urlObject.searchParams.get("id");
+    if (!paramsId || isNaN(paramsId)) {
+      res.writeHead(400, { "Content-Type": "text/plain" });
+      res.write("Invalid or missing product ID");
+      res.end();
+      return;
+    }
     const product = stock.find((product) => product.id === parseInt(paramsId));
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify(product));
