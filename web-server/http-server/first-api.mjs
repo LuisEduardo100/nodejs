@@ -20,7 +20,9 @@ server.addListener("request", (req, res) => {
     res.writeHead(200, { "Content-Type": "application/json" });
     res.write(JSON.stringify(stock));
     res.end();
-  } else if (req.url === "/api/unavailableStock") {
+  }
+
+  if (req.url === "/api/unavailable-stock") {
     const unavailableProducts = stock.filter(
       (product) => product.quantity === 0
     );
