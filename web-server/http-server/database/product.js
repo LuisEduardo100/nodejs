@@ -1,11 +1,5 @@
 export const product = [
   {
-    "id": 1,
-    "name": "TV Smart",
-    "description": "TV que se conecta com o mundo",
-    "price": 1200
-  },
-  {
     "id": 2,
     "name": "Smartphone",
     "description": "Smartphone com excelente qualidade",
@@ -55,7 +49,19 @@ export const product = [
   },
   {
     "id": 10,
-    "name": "TV SmartS",
+    "name": "TV nova no ID 1",
+    "description": "TV que se conecta com o mundo",
+    "price": 1200
+  },
+  {
+    "id": 11,
+    "name": "TV nova no ID 1",
+    "description": "TV que se conecta com o mundo",
+    "price": 1200
+  },
+  {
+    "id": 12,
+    "name": "TV nova no ID 1",
     "description": "TV que se conecta com o mundo",
     "price": 1200
   }
