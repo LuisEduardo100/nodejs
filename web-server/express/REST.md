@@ -1,6 +1,4 @@
-# REST
-
-## Representational State Transfer
+# REST : Representational State Transfer
 
 ### Flexibilidade
 
