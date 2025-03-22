@@ -1,32 +1,32 @@
-# REST : Representational State Transfer
+# > REST : Representational State Transfer
 
-### Flexibilidade
+### * Flexibilidade
 
-### Organização
+### * Organização
 
-### Latência/Eficiência
+### * Latência/Eficiência
 
-### Escalabilidade
+### * Escalabilidade
 
-# Stateless : Toda requisição deve conter toda a informação necessária para o seu atendimento
+# > Stateless : Toda requisição deve conter toda a informação necessária para o seu atendimento
 
-### Identificar as entidades e criar endpoints correspondentes
+### * Identificar as entidades e criar endpoints correspondentes
 
-### Usará apenas um conjunto específico de métodos HTTP, cada um para a situação apropriada
+### * Usará apenas um conjunto específico de métodos HTTP, cada um para a situação apropriada
 
-### Padronizar os códigos de resposta
+### * Padronizar os códigos de resposta
 
-# Métodos HTTP (Create-Read-Update-Delete)
+# > Métodos HTTP (Create-Read-Update-Delete)
 
-## GET : Pegar informações
+## * GET : Pegar informações
 
-## POST : Criar informações
+## * POST : Criar informações
 
-## PUT : Atualizar informações
+## * PUT : Atualizar informações
 
-## DELETE : Deletar informações
+## * DELETE : Deletar informações
 
-# Códigos de resposta
+# > Códigos de resposta
 
 ## 2xx - Sucesso     |     3xx - Redirecionamento 
 ## 5xx - Erro no servidor    |    4xx - Erro na requisição 
