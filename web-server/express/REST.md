@@ -4,19 +4,19 @@ Esta pasta contém códigos que utilizam o Express.js, seguindo os princípios d
 
 ## Princípios REST
 
-### Flexibilidade
+### - Flexibilidade
 A API é projetada para ser flexível, permitindo que novos recursos sejam adicionados facilmente sem comprometer a estrutura atual.
 
-### Organização
+### - Organização
 A estrutura do código segue as melhores práticas de separação de responsabilidades, garantindo que cada módulo ou rota tenha uma responsabilidade clara e fácil manutenção.
 
-### Latência/Eficiência
+### - Latência/Eficiência
 A API foi desenvolvida para ser eficiente, minimizando a latência nas requisições.
 
-### Escalabilidade
+### - Escalabilidade
 A arquitetura da API permite escalabilidade horizontal, facilitando o crescimento do sistema sem comprometer o desempenho.
 
-### Stateless
+### - Stateless
 Toda requisição deve conter toda a informação necessária para o seu atendimento. Não há estado armazenado entre as requisições.
 
 ## Métodos HTTP (Create-Read-Update-Delete)
