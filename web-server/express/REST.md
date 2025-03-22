@@ -18,28 +18,20 @@
 
 # Métodos HTTP (Create-Read-Update-Delete)
 
-## GET
+## GET : Pegar informações
 
-### Pegar informações
+## POST : Criar informações
 
-## POST
+## PUT : Atualizar informações
 
-### Criar informações
-
-## PUT
-
-### Atualizar informações
-
-## DELETE
-
-### Deletar informações
+## DELETE : Deletar informações
 
 # Códigos de resposta
 
-## 2xx - Sucesso
+## 2xx - Sucesso ## 3xx - Redirecionamento ## 4xx - Erro na requisição ## 5xx - Erro no servidor
 
-## 3xx - Redirecionamento
 
-## 4xx - Erro na requisição
 
-## 5xx - Erro no servidor
+
+
+
