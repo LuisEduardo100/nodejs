@@ -1,0 +1,16 @@
+{
+  "name": "f1-api-project",
+  "version": "1.0.0",
+  "description": "Projeto de uma API que entrega os dados da competição de fórmula 1 do ano de 2023.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node --watch .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Luís Eduardo de Paula Albuquerque",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
