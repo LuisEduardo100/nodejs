@@ -8,7 +8,7 @@
 
 ### Escalabilidade
 
-## Stateless : Toda requisição deve conter toda a informação necessária para o seu atendimento
+# Stateless : Toda requisição deve conter toda a informação necessária para o seu atendimento
 
 ### Identificar as entidades e criar endpoints correspondentes
 
