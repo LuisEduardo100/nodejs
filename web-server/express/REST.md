@@ -28,8 +28,8 @@
 
 # Códigos de resposta
 
-## 2xx - Sucesso      ## 3xx - Redirecionamento 
-## 5xx - Erro no servidor      ## 4xx - Erro na requisição 
+## 2xx - Sucesso     |     3xx - Redirecionamento 
+## 5xx - Erro no servidor    |    4xx - Erro na requisição 
 
 
 
