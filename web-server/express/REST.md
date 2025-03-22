@@ -145,8 +145,8 @@ Toda requisição deve conter toda a informação necessária para o seu atendim
 
 - **DELETE**: Deleta informações. Exemplo de uso:
 #### Exemplo de uso com Express.js:
-- **Requisição**: PUT /users/:id
-- **Descrição**: Atualiza as informações de um usuário.
+- **Requisição**: DELETE /users/:id
+- **Descrição**: Deleta um usuário específico.
 - **Código**:
   ```javascript
   app.delete('/users/:id', (req, res) => {
