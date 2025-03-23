@@ -64,7 +64,7 @@ const users = [
   });
   ```
 
-- **POST**: Cria novas informações. Exemplo de uso:
+### **POST**: Cria novas informações. Exemplo de uso:
 
 #### Exemplo de uso com Express.js:
 
@@ -108,7 +108,7 @@ const users = [
   });
   ```
 
-- **PUT**: Atualiza um item existente com novas informações. Exemplo de uso:
+### **PUT**: Atualiza um item existente com novas informações. Exemplo de uso:
 
 #### Exemplo de uso com Express.js:
 
@@ -165,7 +165,7 @@ const users = [
 
   ```
 
-- **DELETE**: Deleta informações. Exemplo de uso:
+### **DELETE**: Deleta informações. Exemplo de uso:
 
 #### Exemplo de uso com Express.js:
 
