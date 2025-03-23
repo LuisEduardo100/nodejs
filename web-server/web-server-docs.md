@@ -135,34 +135,35 @@ const users = [
 
   ```javascript:
   const server = http.createServer((req, res) => {
-  if (req.method === 'PUT' && req.url.startsWith('/users/')) {
-    const userId = parseInt(req.url.split('/')[2]);
-    const user = users.find(u => u.id === userId);
+    if (req.method === 'PUT' && req.url.startsWith("/users/")) {
+        const userId = parseInt(req.url.split("/")[2]);
+        const user = users.find(u => u.id === userId);
 
-    if (!user) {
-      res.writeHead(404);
-      res.end('Usuário não encontrado');
-      return;
+        if (!user) {
+            res.writeHead(404);
+            res.end('Usuário não encontrado');
+            return;
+        }
+
+        let body = '';
+
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            const { name, email } = JSON.parse(body);
+            if (name) user.name = name;
+            if (email) user.email = email;
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(user));
+        });
+    } else {
+        res.writeHead(404);
+        res.end("Not Found");
     }
-
-    let body = '';
-    req.on('data', chunk => {
-      body += chunk;
-    });
-
-    req.on('end', () => {
-      const { name, email } = JSON.parse(body);
-      if (name) user.name = name;
-      if (email) user.email = email;
-
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(user));
-    });
-  } else {
-    res.writeHead(404);
-    res.end('Not Found');
-  }});
-
+  });
   ```
 
 ### **DELETE**: Deleta informações. Exemplo de uso:
@@ -237,3 +238,7 @@ const users = [
 🔹 502 Bad Gateway – Invalid response from upstream<br>
 🔹 503 Service Unavailable – Server overloaded<br>
 🔹 504 Gateway Timeout – Server timeout<br>
+
+```
+
+```
