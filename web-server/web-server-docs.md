@@ -211,6 +211,10 @@ const users = [
 
 ## Códigos de Resposta
 
+![Status code interativo](./http-status-code.gif)
+
+#### Image Credit: Amigoscode
+
 ✅ 2xx – Success<br>
 🔹 200 OK – Request succeeded<br>
 🔹 201 Created – Resource created<br>
