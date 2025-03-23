@@ -211,25 +211,13 @@ const users = [
 
 ## Códigos de Resposta
 
-✅ 2xx – Success
-🔹 200 OK – Request succeeded
-🔹 201 Created – Resource created
-🔹 202 Accepted – Request accepted
-🔹 204 No Content – No response body
-🔄 3xx – Redirection
-🔹 301 Moved Permanently – URL changed permanently
-🔹 302 Found – Temporary redirect
-🔹 304 Not Modified – No new updates
-⚠️ 4xx – Client Errors
-🔹 400 Bad Request – Invalid request
-🔹 401 Unauthorized – Authentication required
-🔹 403 Forbidden – Access denied
-🔹 404 Not Found – Resource missing
-🔹 405 Method Not Allowed – HTTP method restricted
-🔹 408 Request Timeout – Server timed out
-🔥 5xx – Server Errors
-🔹 500 Internal Server Error – Server malfunction
-🔹 501 Not Implemented – Not supported
-🔹 502 Bad Gateway – Invalid response from upstream
-🔹 503 Service Unavailable – Server overloaded
-🔹 504 Gateway Timeout – Server timeout
+- **2xx** - Sucesso: Indica que a requisição foi bem-sucedida.
+- 200 OK
+- 201 Created
+- **3xx** - Redirecionamento: A requisição precisa de mais ações para ser completada.
+- 301 Moved Permanently
+- **4xx** - Erro na Requisição: Ocorre quando o cliente envia uma requisição inválida.
+- 400 Bad Request
+- 404 Not Found
+- **5xx** - Erro no Servidor: Ocorre quando há falha no servidor.
+- 500 Internal Server Error
