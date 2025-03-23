@@ -1,9 +1,15 @@
 export const driversInRandomOrder = [
   {
+    "id": "b676e6f7-cc41-47f1-915e-7a23e247e7c7",
+    "name": "Luís",
+    "team": "Volkswagen",
+    "points": 1000
+  },
+  {
     "id": "f16a4201-b71c-47c4-afb9-7295f274eb30",
-    "name": "Louis Verstarpen",
-    "team": "Hot wheels",
-    "points": 2200
+    "name": "Luís Steel",
+    "team": "Volkswagen Wheels",
+    "points": 999
   },
   {
     "name": "Max Verstappen",
@@ -39,6 +45,16 @@ export const driversInRandomOrder = [
     "id": "86925885-525d-4188-91db-59ade0889b33",
     "name": "Luís Eduardo",
     "team": "Hot wheels",
+    "points": 234
+  },
+  {
+    "id": "573257b5-78a3-4f75-ab79-e7125e5bf61e",
+    "points": 234
+  },
+  {
+    "id": "9f16c7ab-06c2-47d9-9660-445b5924e049",
+    "name": "Luís",
+    "team": "Volkswagen",
     "points": 234
   },
   {

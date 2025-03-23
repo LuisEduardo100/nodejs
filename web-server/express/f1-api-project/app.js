@@ -1,7 +1,8 @@
 import express from "express";
-import { driversInRandomOrder, driversOrdered } from "./database/script.js";
+import Joi from "joi";
 //import { randomUUID} from 'node:crypto';
 import { v4 as uuidv4 } from "uuid";
+import { driversInRandomOrder, driversOrdered } from "./database/script.js";
 import { save } from "./database/database-functions.js";
 
 const app = express();
@@ -15,27 +16,68 @@ app.get(baseRoute + "/drivers", (req, res) => {
 });
 
 app.get(baseRoute + "/drivers/standing/:position", (req, res) => {
+  const positionSchema = Joi.number().min(1).max(dbDrivers.length);
   const { position } = req.params;
+  const { error } = positionSchema.validate(position);
+
+  console.log(error);
+
+  if (error) {
+    return res.status(400).json({
+      message: "Validation error",
+      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
+    });
+  }
+
+  // if (!position || isNaN(position)) {
+  //   return res.status(400).send("Invalid position");
+  // }
+
+  // if (position < 1 || position > dbDrivers.length) {
+  //   return res.status(400).send("Invalid position");
+  // }
+
   const driver = driversOrdered[position - 1];
+
   res.status(200).send(driver);
 });
 
 app.get(baseRoute + "/drivers/:id", (req, res) => {
   const { id } = req.params;
   const driver = driversOrdered.find((d) => d.id === id);
+
   if (!driver) {
     return res.status(404).send("Driver not found");
   }
+
   res.status(200).send(driver);
 });
 
 app.post(baseRoute + "/drivers", (req, res) => {
-  const { name, team, points } = req.body;
-  if (!name || !team || !points) {
-    return res
-      .status(400)
-      .send("Missing required fields: name, team, and points");
+  const driverSchema = Joi.object({
+    name: Joi.string().min(3).max(30).required(),
+    team: Joi.string().min(3).max(50).required(),
+    points: Joi.number().min(0).max(1000).default(0),
+  });
+
+  // abortEarly = false ensures that the code returns all required fields
+  const { error, value } = driverSchema.validate(req.body, {
+    abortEarly: false,
+  });
+  const { name, team, points } = value;
+
+  if (error) {
+    return res.status(400).json({
+      message: "Validation error",
+      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
+    });
   }
+
+  // if (!name || !team || points === undefined) {
+  //   return res
+  //     .status(400)
+  //     .send("Missing required fields: name, team, and points");
+  // }
 
   //newDriver = {...req.body, id: randomUUID()}
   const newDriver = {
@@ -51,7 +93,25 @@ app.post(baseRoute + "/drivers", (req, res) => {
 });
 
 app.put(baseRoute + "/drivers/:id", (req, res) => {
+  const updateDriversSchema = Joi.object({
+    name: Joi.string().min(3).max(30),
+    team: Joi.string().min(3).max(50),
+    points: Joi.number().min(0).max(1000),
+  }).min(1);
+
+  const { error } = updateDriversSchema.validate(req.body, {
+    abortEarly: false,
+  });
+
+  if (error) {
+    return res.status(400).json({
+      message: "Validation error",
+      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
+    });
+  }
+
   const { id } = req.params;
+
   const driver = driversOrdered.find((driver) => driver.id === id);
 
   if (!driver) {
@@ -78,6 +138,7 @@ app.delete(baseRoute + "/drivers/:id", (req, res) => {
 
   dbDrivers.splice(index, 1);
   save(dbDrivers);
+
   res.status(204).send();
 });
 
