@@ -3,6 +3,12 @@ export const driversInRandomOrder = [
     "id": "f16a4201-b71c-47c4-afb9-7295f274eb30",
     "name": "LuísX Eduardo",
     "team": "Hot wheels",
+    "points": 2200
+  },
+  {
+    "id": "f139815e-7ba3-4057-acd9-d611c94d62d0",
+    "name": "LuísXDS Eduardo",
+    "team": "Hot wheels",
     "points": 2340
   },
   {
@@ -148,12 +154,6 @@ export const driversInRandomOrder = [
     "team": "AlphaTauri",
     "points": 0,
     "id": "d15a9c50-5943-4be6-872f-b850914c9a80"
-  },
-  {
-    "id": "f139815e-7ba3-4057-acd9-d611c94d62d0",
-    "name": "LuísXDS Eduardo",
-    "team": "Hot wheels",
-    "points": 2340
   }
 ]
 export const driversOrdered = driversInRandomOrder.sort((a, b) => b.points - a.points)
