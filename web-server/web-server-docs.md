@@ -211,9 +211,9 @@ const users = [
 
 ## Códigos de Resposta
 
-![Status code interativo](./http-status-code.gif)
+<img src="http-status-code.gif" width="500"/>
 
-#### Image Credit: Amigoscode
+##### Image Credit: Amigoscode
 
 ✅ 2xx – Success<br>
 🔹 200 OK – Request succeeded<br>
