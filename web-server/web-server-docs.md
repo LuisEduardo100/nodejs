@@ -238,7 +238,3 @@ const users = [
 🔹 502 Bad Gateway – Invalid response from upstream<br>
 🔹 503 Service Unavailable – Server overloaded<br>
 🔹 504 Gateway Timeout – Server timeout<br>
-
-```
-
-```
