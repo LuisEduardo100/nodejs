@@ -1,13 +1,17 @@
 import express from "express";
-import Joi from "joi";
 //import { randomUUID} from 'node:crypto';
 import { v4 as uuidv4 } from "uuid";
+import { save } from "./database/database-functions.js";
 import {
   driversInRandomOrder,
   driversOrdered,
   teams,
 } from "./database/script.js";
-import { save } from "./database/database-functions.js";
+import {
+  validateDriverInfo,
+  validatePosition,
+  validateUpdateDriverInfo,
+} from "./utils/inputValidation.js";
 
 const app = express();
 app.use(express.json());
@@ -23,8 +27,7 @@ app.get(baseRoute + "/teams", (req, res) => {
 
 app.get(baseRoute + "/teams/standing/:position", (req, res) => {
   const { position } = req.params;
-  const positionSchema = Joi.number().min(1).max(teams.length);
-  const { error } = positionSchema.validate(position);
+  const { error } = validatePosition(position, teams.length);
 
   if (error) {
     return res.status(400).json({
@@ -43,9 +46,8 @@ app.get(baseRoute + "/drivers", (req, res) => {
 });
 
 app.get(baseRoute + "/drivers/standing/:position", (req, res) => {
-  const positionSchema = Joi.number().min(1).max(dbDrivers.length);
   const { position } = req.params;
-  const { error } = positionSchema.validate(position);
+  const { error } = validatePosition(position, dbDrivers.length);
 
   if (error) {
     return res.status(400).json({
@@ -79,17 +81,8 @@ app.get(baseRoute + "/drivers/:id", (req, res) => {
 });
 
 app.post(baseRoute + "/drivers", (req, res) => {
-  const driverSchema = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
-    team: Joi.string().min(3).max(50).required(),
-    points: Joi.number().min(0).max(1000).default(0),
-  });
-
-  // abortEarly = false ensures that the code returns all required fields
-  const { error, value } = driverSchema.validate(req.body, {
-    abortEarly: false,
-  });
-  const { name, team, points } = value;
+  const { error } = validateDriverInfo(req.body);
+  const { name, team, points } = req.body;
 
   if (error) {
     return res.status(400).json({
@@ -118,15 +111,7 @@ app.post(baseRoute + "/drivers", (req, res) => {
 });
 
 app.put(baseRoute + "/drivers/:id", (req, res) => {
-  const updateDriversSchema = Joi.object({
-    name: Joi.string().min(3).max(30),
-    team: Joi.string().min(3).max(50),
-    points: Joi.number().min(0).max(1000),
-  }).min(1);
-
-  const { error } = updateDriversSchema.validate(req.body, {
-    abortEarly: false,
-  });
+  const { error } = validateUpdateDriverInfo(req.body);
 
   if (error) {
     return res.status(400).json({
