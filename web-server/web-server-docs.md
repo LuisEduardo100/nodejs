@@ -133,35 +133,35 @@ const users = [
 
 - **Código**:
 
-  ```javascript:
+  ```javascript
   const server = http.createServer((req, res) => {
-    if (req.method === 'PUT' && req.url.startsWith("/users/")) {
-        const userId = parseInt(req.url.split("/")[2]);
-        const user = users.find(u => u.id === userId);
+    if (req.method === "PUT" && req.url.startsWith("/users/")) {
+      const userId = parseInt(req.url.split("/")[2]);
+      const user = users.find((u) => u.id === userId);
 
-        if (!user) {
-            res.writeHead(404);
-            res.end('Usuário não encontrado');
-            return;
-        }
-
-        let body = '';
-
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            const { name, email } = JSON.parse(body);
-            if (name) user.name = name;
-            if (email) user.email = email;
-
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(user));
-        });
-    } else {
+      if (!user) {
         res.writeHead(404);
-        res.end("Not Found");
+        res.end("Usuário não encontrado");
+        return;
+      }
+
+      let body = "";
+
+      req.on("data", (chunk) => {
+        body += chunk;
+      });
+
+      req.on("end", () => {
+        const { name, email } = JSON.parse(body);
+        if (name) user.name = name;
+        if (email) user.email = email;
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(user));
+      });
+    } else {
+      res.writeHead(404);
+      res.end("Not Found");
     }
   });
   ```
