@@ -67,6 +67,20 @@ app.put(baseRoute + "/drivers/:id", (req, res) => {
   save(dbDrivers);
   res.status(200).send(driver);
 });
+
+app.delete(baseRoute + "/drivers/:id", (req, res) => {
+  const { id } = req.params;
+  const index = dbDrivers.findIndex((driver) => driver.id === id);
+
+  if (index === -1) {
+    return res.status(404).send("Driver not found");
+  }
+
+  dbDrivers.splice(index, 1);
+  save(dbDrivers);
+  res.status(204).send();
+});
+
 const port = 3000;
 app.listen(3000, () => {
   console.log(`Server running on port ${3000}`);
