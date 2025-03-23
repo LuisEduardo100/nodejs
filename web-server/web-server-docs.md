@@ -211,25 +211,25 @@ const users = [
 
 ## Códigos de Resposta
 
-- ✅ 2xx – Success
-- 🔹 200 OK – Request succeeded
-- 🔹 201 Created – Resource created
-- 🔹 202 Accepted – Request accepted
-- 🔹 204 No Content – No response body
-- 🔄 3xx – Redirection
-- 🔹 301 Moved Permanently – URL changed permanently
-- 🔹 302 Found – Temporary redirect
-- 🔹 304 Not Modified – No new updates
-- ⚠️ 4xx – Client Errors
-- 🔹 400 Bad Request – Invalid request
-- 🔹 401 Unauthorized – Authentication required
-- 🔹 403 Forbidden – Access denied
-- 🔹 404 Not Found – Resource missing
-- 🔹 405 Method Not Allowed – HTTP method restricted
-- 🔹 408 Request Timeout – Server timed out
-- 🔥 5xx – Server Errors
-- 🔹 500 Internal Server Error – Server malfunction
-- 🔹 501 Not Implemented – Not supported
-- 🔹 502 Bad Gateway – Invalid response from upstream
-- 🔹 503 Service Unavailable – Server overloaded
-- 🔹 504 Gateway Timeout – Server timeout
+✅ 2xx – Success<br>
+🔹 200 OK – Request succeeded<br>
+🔹 201 Created – Resource created<br>
+🔹 202 Accepted – Request accepted<br>
+🔹 204 No Content – No response body<br>
+🔄 3xx – Redirection<br>
+🔹 301 Moved Permanently – URL changed permanently<br>
+🔹 302 Found – Temporary redirect<br>
+🔹 304 Not Modified – No new updates<br>
+⚠️ 4xx – Client Errors<br>
+🔹 400 Bad Request – Invalid request<br>
+🔹 401 Unauthorized – Authentication required<br>
+🔹 403 Forbidden – Access denied<br>
+🔹 404 Not Found – Resource missing<br>
+🔹 405 Method Not Allowed – HTTP method restricted<br>
+🔹 408 Request Timeout – Server timed out<br>
+🔥 5xx – Server Errors<br>
+🔹 500 Internal Server Error – Server malfunction<br>
+🔹 501 Not Implemented – Not supported<br>
+🔹 502 Bad Gateway – Invalid response from upstream<br>
+🔹 503 Service Unavailable – Server overloaded<br>
+🔹 504 Gateway Timeout – Server timeout<br>
