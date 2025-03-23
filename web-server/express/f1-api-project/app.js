@@ -2,15 +2,42 @@ import express from "express";
 import Joi from "joi";
 //import { randomUUID} from 'node:crypto';
 import { v4 as uuidv4 } from "uuid";
-import { driversInRandomOrder, driversOrdered } from "./database/script.js";
+import {
+  driversInRandomOrder,
+  driversOrdered,
+  teams,
+} from "./database/script.js";
 import { save } from "./database/database-functions.js";
 
 const app = express();
 app.use(express.json());
 
 const baseRoute = "/api/v1";
-
 const dbDrivers = [...driversInRandomOrder];
+
+// Rotas para as equipes
+
+app.get(baseRoute + "/teams", (req, res) => {
+  res.status(200).send(teams);
+});
+
+app.get(baseRoute + "/teams/standing/:position", (req, res) => {
+  const { position } = req.params;
+  const positionSchema = Joi.number().min(1).max(teams.length);
+  const { error } = positionSchema.validate(position);
+
+  if (error) {
+    return res.status(400).json({
+      message: "Validation error",
+      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
+    });
+  }
+
+  const team = teams[position - 1];
+  res.status(200).send(team);
+});
+
+// Rotas para os pilotos
 app.get(baseRoute + "/drivers", (req, res) => {
   res.status(200).send(driversOrdered);
 });
@@ -19,8 +46,6 @@ app.get(baseRoute + "/drivers/standing/:position", (req, res) => {
   const positionSchema = Joi.number().min(1).max(dbDrivers.length);
   const { position } = req.params;
   const { error } = positionSchema.validate(position);
-
-  console.log(error);
 
   if (error) {
     return res.status(400).json({
