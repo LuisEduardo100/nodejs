@@ -1,5 +1,6 @@
 import express from "express";
 import { driversInRandomOrder, driversOrdered } from "./database/script.js";
+//import { randomUUID} from 'node:crypto';
 import { v4 as uuidv4 } from "uuid";
 import { save } from "./database/database-functions.js";
 
@@ -35,15 +36,17 @@ app.post(baseRoute + "/drivers", (req, res) => {
       .status(400)
       .send("Missing required fields: name, team, and points");
   }
+
+  //newDriver = {...req.body, id: randomUUID()}
   const newDriver = {
     id: uuidv4(),
     name,
     team,
     points,
   };
+
   dbDrivers.push(newDriver);
   save(dbDrivers);
-
   res.status(201).send(newDriver);
 });
 
