@@ -16,16 +16,25 @@ router.get("/", (req, res) => {
   res.status(200).send(driversOrdered);
 });
 
-router.get("/standing/:position", (req, res) => {
+router.get("/standing/:position", (req, res, next) => {
   const { position } = req.params;
   const { error } = validatePosition(position, dbDrivers.length);
 
   if (error) {
-    return res.status(400).json({
-      message: "Validation error",
-      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
-    });
+    const err = new Error();
+    err.statusCode = 400;
+    err.description = error.details.map((e) =>
+      e.message.replace(/["\\:]/g, "")
+    );
+    return next(err);
   }
+
+  // if (error) {
+  //   return res.status(400).json({
+  //     message: "Validation error",
+  //     details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
+  //   });
+  // }
 
   // if (!position || isNaN(position)) {
   //   return res.status(400).send("Invalid position");
@@ -40,26 +49,31 @@ router.get("/standing/:position", (req, res) => {
   res.status(200).send(driver);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
   const { id } = req.params;
   const driver = driversOrdered.find((d) => d.id === id);
 
   if (!driver) {
-    return res.status(404).send("Driver not found");
+    const err = new Error();
+    err.statusCode = 404;
+    err.description = "Driver not found";
+    return next(err);
   }
 
   res.status(200).send(driver);
 });
 
-router.post("/", (req, res) => {
+router.post("/", (req, res, next) => {
   const { error } = validateDriverInfo(req.body);
   const { name, team, points } = req.body;
 
   if (error) {
-    return res.status(400).json({
-      message: "Validation error",
-      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
-    });
+    const err = new Error();
+    err.statusCode = 400;
+    err.description = error.details.map((e) =>
+      e.message.replace(/["\\:]/g, "")
+    );
+    return next(err);
   }
 
   // if (!name || !team || points === undefined) {
@@ -81,16 +95,17 @@ router.post("/", (req, res) => {
   res.status(201).send(newDriver);
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", (req, res, next) => {
   const { error } = validateUpdateDriverInfo(req.body);
 
   if (error) {
-    return res.status(400).json({
-      message: "Validation error",
-      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
-    });
+    const err = new Error();
+    err.statusCode = 400;
+    err.description = error.details.map((e) =>
+      e.message.replace(/["\\:]/g, "")
+    );
+    return next(err);
   }
-
   const { id } = req.params;
 
   const driver = driversOrdered.find((driver) => driver.id === id);
@@ -114,7 +129,10 @@ router.delete("/:id", (req, res) => {
   const index = dbDrivers.findIndex((driver) => driver.id === id);
 
   if (index === -1) {
-    return res.status(404).send("Driver not found");
+    const err = new Error();
+    err.statusCode = 404;
+    err.description = "Driver not found";
+    return next(err);
   }
 
   dbDrivers.splice(index, 1);

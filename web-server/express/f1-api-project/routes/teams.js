@@ -8,15 +8,17 @@ router.get("/", (req, res) => {
   res.status(200).send(teams);
 });
 
-router.get("/standing/:position", (req, res) => {
+router.get("/standing/:position", (req, res, next) => {
   const { position } = req.params;
   const { error } = validatePosition(position, teams.length);
 
   if (error) {
-    return res.status(400).json({
-      message: "Validation error",
-      details: error.details.map((e) => e.message.replace(/["\\:]/g, "")),
-    });
+    const err = new Error();
+    err.statusCode = 400;
+    err.description = error.details.map((e) =>
+      e.message.replace(/["\\:]/g, "")
+    );
+    return next(err);
   }
 
   const team = teams[position - 1];

@@ -9,6 +9,9 @@ const app = express();
 app.use(express.json());
 app.use(baseRoute + "/drivers", driversRouter);
 app.use(baseRoute + "/teams", teamsRouter);
+app.use((err, req, res, next) => {
+  res.status(err.statusCode ?? 500).send(err);
+});
 
 const port = 3000;
 app.listen(port, () => {
