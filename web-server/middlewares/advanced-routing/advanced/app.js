@@ -27,3 +27,21 @@ function registerOnDatabase(req, res, next) {
   console.log("Registrando transação");
   next();
 }
+
+function errorHandler(err, req, res, next) {
+  console.error(err);
+  res.status(500).json({ message: "Erro interno do servidor" });
+}
+
+function authMiddleware(req, res, next) {
+  const token = req.headers.authorization;
+  if (!token || token !== "seu-token-seguro") {
+    return res.status(401).json({ error: "Não autorizado" });
+  }
+  next();
+}
+
+function logger(req, res, next) {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+}
