@@ -1,6 +1,5 @@
 /**
 * Uso do IN para simplificar casos de filtro com múltiplos OR
-*
 */
 SELECT * FROM customers; 
 WHERE country = 'Mexico' OR  country = 'UK' OR country = 'Canada';
