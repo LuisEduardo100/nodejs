@@ -7,7 +7,7 @@ SELECT * FROM customers;
 
 SELECT
 	country,
-	COUNT(customers)
+	COUNT(*)
 FROM customers
 WHERE contact_title = 'Owner'
 GROUP BY country
